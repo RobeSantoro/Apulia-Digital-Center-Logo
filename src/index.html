@@ -6,6 +6,29 @@
     <title>Apulia Digital Center - Interactive 3D logo</title>
 </head>
 <body>
+    <script type="vert" id="vertexshader">
+        attribute float size;
+        attribute vec3 color;
+
+        varying vec3 vColor;
+
+        void main() {
+            vColor = color;
+            vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+            gl_PointSize = size;
+            gl_Position = projectionMatrix * mvPosition;
+        }
+    </script>
+
+    <script type="frag" id="fragmentshader">
+        uniform sampler2D pointTexture;
+        varying vec3 vColor;
+        void main() {
+            gl_FragColor = vec4(vColor, 1.0);
+            if (texture2D(pointTexture,gl_PointCoord).g < 0.7) discard;
+            gl_FragColor = gl_FragColor * texture2D(pointTexture, gl_PointCoord);
+        }
+    </script>
     <canvas class="webgl">
         <p>Your browser doesn't support WebGL</p>
     </canvas>
