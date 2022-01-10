@@ -31,8 +31,8 @@ controls.autoRotateSpeed = 2
 
 // Stats
 const stats = new Stats()
-stats.showPanel(0)
-document.body.appendChild(stats.dom)
+//stats.showPanel(0)
+//document.body.appendChild(stats.dom)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
