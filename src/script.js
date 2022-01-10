@@ -161,7 +161,7 @@ let tempSparklesArray = []
 let tempSparklesArraySizes = []
 
 // Render
-function render(a) {
+function render() {
 
   if (sparkles.length < 30000) {
     lines.forEach(l => {
