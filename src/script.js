@@ -25,7 +25,7 @@ scene.add(camera)
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
-controls.dampingFactor = 0.25
+controls.dampingFactor = 1
 controls.autoRotate = true
 controls.autoRotateSpeed = 2
 
@@ -38,15 +38,16 @@ const stats = new Stats()
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
   antialias: true,
-  alpha: true
+  alpha: true,
+  preserveDrawingBuffer: true
 })
 
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-renderer.outputEncoding = THREE.sRGBEncoding
-renderer.toneMapping = THREE.ACESFilmicToneMapping
-renderer.toneMappingExposure = 1
-renderer.setClearColor(0x101010, 0)
+//renderer.outputEncoding = THREE.sRGBEncoding
+//renderer.toneMapping = THREE.ACESFilmicToneMapping
+//renderer.toneMappingExposure = 1
+//renderer.setClearColor(0x200430, 0)
 
 const group = new THREE.Group()
 scene.add(group)
@@ -186,6 +187,8 @@ function render(a) {
   renderer.render(scene, camera)
   // Stats
   stats.update()
+  // Controls
+  controls.update()
 }
 
 window.addEventListener('resize', () => {
